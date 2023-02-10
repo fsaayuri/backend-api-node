@@ -40,6 +40,8 @@ server.listen(port, hostname, () => {
 const express = require('express')
 const listaCursos = require('./db/cursos.json')
 // simulação de um banco de dados
+
+const mysql = require(mysql)
 const app = express()
 const port = 3100
 
@@ -51,8 +53,29 @@ app.get('/', (req, res) => {
 
 // mudança de GET
 app.get('/cursos', (req, res) => {
+  con = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "apinode"
+  })
+  
+  con.connect((err) => {
+    if (err) throw err;
+    const sql = "select * from cursos;"
+    con.query(sql, function (err, result) {
+      if (err) throw err;
+      //TODO return result with JSON
+    })
+  });
+
   res.json(listaCursos)
 })
+
+
+
+
+
 
 // mudança de POST
 app.post('/cursos', (req, res) => {
@@ -64,7 +87,7 @@ app.put('/cursos', (req, res) => {
   res.send('Fiz um Update!')
 })
 
-app.put('/cursos', (req, res) => {
+app.delete('/cursos', (req, res) => {
   res.send('Fiz um Update!')
 })
 
