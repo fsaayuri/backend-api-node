@@ -1,3 +1,4 @@
+/*
 // para rodar precisa estar com o nodemon rodando (para rodar no browser: "localhost:3100")
 // http.createServer pega na página do node uma função já criada para fazer um servidor
 // localhost para não rodar e dar conflito no xampp precisa mudar a porta para 3100
@@ -34,3 +35,18 @@ const server = http.createServer((req, res) => {
 server.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
+*/
+
+const express = require('express')
+const app = express()
+const port = 3100
+
+// se alguem da um "get na home" ele aparece a mensagem
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
+
+// outra rota diferente 
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})
