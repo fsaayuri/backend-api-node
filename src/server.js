@@ -38,15 +38,43 @@ server.listen(port, hostname, () => {
 */
 
 const express = require('express')
+const listaCursos = require('./db/cursos.json')
+// simulação de um banco de dados
 const app = express()
 const port = 3100
 
 // se alguem da um "get na home" ele aparece a mensagem
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  const msg = [{nome: 'LP2'},{nome: 'PJ3'}]
+  res.json(msg)
+})
+
+// mudança de GET
+app.get('/cursos', (req, res) => {
+  res.json(listaCursos)
+})
+
+// mudança de POST
+app.post('/cursos', (req, res) => {
+  res.json('POST Cursos JSON!')
+})
+
+// mudança de PUT
+app.put('/cursos', (req, res) => {
+  res.send('Fiz um Update!')
+})
+
+app.put('/cursos', (req, res) => {
+  res.send('Fiz um Update!')
+})
+
+app.all('*', (req, res) => {
+  res.send('404 Rota não encontrada!')
 })
 
 // outra rota diferente 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
+
+
