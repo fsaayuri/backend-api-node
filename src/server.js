@@ -38,66 +38,19 @@ server.listen(port, hostname, () => {
 */
 
 const express = require('express')
-const listaCursos = require('./db/cursos.json')
-// simulação de um banco de dados
+const courseRoutes = require('./routes/courseRoutes')
+const userRoutes = require('./routes/userRoutes')
 
-const mysql = require(mysql)
 const app = express()
 const port = 3100
 
-// se alguem da um "get na home" ele aparece a mensagem
-app.get('/', (req, res) => {
-  const msg = [{nome: 'LP2'},{nome: 'PJ3'}]
-  res.json(msg)
-})
-
-// mudança de GET
-app.get('/cursos', (req, res) => {
-  con = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "apinode"
-  })
-  
-  con.connect((err) => {
-    if (err) throw err;
-    const sql = "select * from cursos;"
-    con.query(sql, function (err, result) {
-      if (err) throw err;
-      //TODO return result with JSON
-    })
-  });
-
-  res.json(listaCursos)
-})
-
-
-
-
-
-
-// mudança de POST
-app.post('/cursos', (req, res) => {
-  res.json('POST Cursos JSON!')
-})
-
-// mudança de PUT
-app.put('/cursos', (req, res) => {
-  res.send('Fiz um Update!')
-})
-
-app.delete('/cursos', (req, res) => {
-  res.send('Fiz um Update!')
-})
+app.use('/course', courseRoutes)
+app.use('/user', userRoutes)
 
 app.all('*', (req, res) => {
-  res.send('404 Rota não encontrada!')
+  res.status(404).send('404 Rota não encontrada!')
 })
 
-// outra rota diferente 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
-
-
