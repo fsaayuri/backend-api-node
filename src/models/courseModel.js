@@ -1,14 +1,10 @@
-const mysql = require('mysql')
-const courseModel = {}
+const con = require('../db/dbConnection')
 
-// callback é uma funçãõ, entra como paramentro e dependendo do que acontece dentro de outra função ela executa dentro
+const courseModel = {} // objeto vazio
+
+// =====================================================
+
 courseModel.listAllCourses = (callback) => {
-  const con = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "apinode2"
-  })
   const sql = "SELECT * FROM cursos;"
   con.query(sql, (err, result) => {
     if (err) {
@@ -19,8 +15,36 @@ courseModel.listAllCourses = (callback) => {
   })
 }
 
-courseModel.createCourse = (req, res) => {
-  res.json({ message: "Entrou na rota /course com POST!" })
+// =====================================================
+
+courseModel.createCourse = (course, callback) => {
+  const { curso, cargahoraria } = course
+  const sql = 'INSERT INTO cursos (nome, cargahoraria) VALUES (?, ?);'
+  const values = [curso, cargahoraria]
+
+  con.query(sql, values, (err, result) => {
+    if (err) {
+      callback(err, null)
+    } else {
+      callback(null, result)
+    }
+  })
 }
+
+// =====================================================
+
+courseModel.deleteCourse = (id, callback) => {
+  const sql = 'DELETE FROM cursos WHERE id = ?;'
+  const value = [id]
+  con.query(sql, value, (err, result) => {
+    if (err) {
+      callback(err, null)
+    } else {
+      callback(null, result)
+    }
+  })
+}
+
+// TODO: Tratar erro de json inválido
 
 module.exports = courseModel
