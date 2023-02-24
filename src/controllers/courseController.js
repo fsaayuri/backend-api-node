@@ -3,6 +3,8 @@ const courseModel = require('../models/courseModel')
 
 const courseController = {}
 
+// uma função dentro do atributo do objeto
+// usa apenas pra armazenar e na outra página usa o "destruction" para serem chamadas como objetos
 courseController.listAllCourses = (req, res) => {
   courseModel.listAllCourses((error, result) => {
     if (error)
@@ -17,3 +19,4 @@ courseController.createCourse = (req, res) => {
 }
 
 module.exports = courseController
+// sempre na hora de exportar é o objeto

@@ -1,6 +1,7 @@
 const mysql = require('mysql')
 const courseModel = {}
 
+// callback é uma funçãõ, entra como paramentro e dependendo do que acontece dentro de outra função ela executa dentro
 courseModel.listAllCourses = (callback) => {
   const con = mysql.createConnection({
     host: "localhost",
