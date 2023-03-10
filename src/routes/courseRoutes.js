@@ -1,16 +1,21 @@
-const express = require('express');
-const router = express.Router();
+import express from 'express'
+// import com default (direto)
+import {
+  listAllCourses,
+  createCourse,
+  deleteCourse,
+  updateCourse
+} from '../controllers/courseController.js'
+// import padrão precisa estar dentro de um objeto
 
-const courseController = require('../controllers/courseController')
+const router = express.Router()
 
-const { listAllCourses, createCourse, deleteCourse } = courseController
+router.get('/', listAllCourses) // SELECT
+router.post('/', createCourse) // INSERT
+router.delete('/', deleteCourse) // DELETE
+router.put('/', updateCourse) // UPDATE
 
-router.get('/', listAllCourses);
-router.post('/', createCourse);
-router.delete('/', deleteCourse);
-
-module.exports = router;
-
+export default router
 
 
 

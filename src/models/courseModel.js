@@ -1,50 +1,60 @@
-const con = require('../db/dbConnection')
+import con from '../db/dbConnection.js'
 
-const courseModel = {} // objeto vazio
-
-// =====================================================
-
-courseModel.listAllCourses = (callback) => {
+export const listAllCourses = (callback) => {
   const sql = "SELECT * FROM cursos;"
   con.query(sql, (err, result) => {
     if (err) {
       callback(err, null)
+      console.log(`DB Error: ${err.sqlMessage}`)
     } else {
       callback(null, result)
     }
   })
 }
 
-// =====================================================
-
-courseModel.createCourse = (course, callback) => {
-  const { curso, cargahoraria } = course
+export const createCourse = (course, callback) => {
+  const { nome, cargahoraria } = course
+  // const sql = 'INSERT INTO cursos SET ?;'
+  // const values = { nome, cargahoraria }
   const sql = 'INSERT INTO cursos (nome, cargahoraria) VALUES (?, ?);'
-  const values = [curso, cargahoraria]
+  const values = [nome, cargahoraria]
 
   con.query(sql, values, (err, result) => {
     if (err) {
       callback(err, null)
+      console.log(`DB Error: ${err.sqlMessage}`)
     } else {
       callback(null, result)
     }
   })
 }
 
-// =====================================================
-
-courseModel.deleteCourse = (id, callback) => {
+export const deleteCourse = (id, callback) => {
   const sql = 'DELETE FROM cursos WHERE id = ?;'
   const value = [id]
   con.query(sql, value, (err, result) => {
     if (err) {
       callback(err, null)
+      console.log(`DB Error: ${err.sqlMessage}`)
     } else {
       callback(null, result)
     }
   })
 }
 
-// TODO: Tratar erro de json inválido
+export const updateCourse = (course, callback) => {
+  const { id, nome, cargahoraria } = course
+  const sql = 'UPDATE cursos SET nome = ?, cargahoraria = ? WHERE id = ? ;'
+  const values = [nome, cargahoraria, id]
 
-module.exports = courseModel
+  con.query(sql, values, (err, result) => {
+    if (err) {
+      callback(err, null)
+      console.log(`DB Error: ${err.sqlMessage}`)
+    } else {
+      callback(null, result)
+    }
+  })
+}
+
+export default { listAllCourses, createCourse, deleteCourse, updateCourse }
