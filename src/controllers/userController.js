@@ -43,7 +43,7 @@ export const deleteUser = (req, res) => {
 export const deleteIdUser = (req, res) => {
   const { id, slug } = req.params
   console.log(slug)
-  userModel.deleteIdUser(id, (error, result) => {
+  userModel.deleteUser(id, (error, result) => {
     if (error)
       res.status(500).json({ message: "Erro no Banco de Dados" })
     if (result)
