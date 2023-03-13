@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 13-Mar-2023 às 18:53
+-- Tempo de geração: 13-Mar-2023 às 19:20
 -- Versão do servidor: 10.4.22-MariaDB
 -- versão do PHP: 8.0.13
 
@@ -55,6 +55,14 @@ CREATE TABLE `usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Extraindo dados da tabela `usuario`
+--
+
+INSERT INTO `usuario` (`id`, `nome`, `bio`) VALUES
+(1, '', 'Aluna Formada pelo campus IFSP de Caraguatatuba em 2023/1 no curso de Técnico em Informática p Inter'),
+(2, 'Irys Rosa', 'Aluna Formada pelo campus IFSP de Caraguatatuba em 2025/2');
+
+--
 -- Índices para tabelas despejadas
 --
 
@@ -84,7 +92,7 @@ ALTER TABLE `cursos`
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
