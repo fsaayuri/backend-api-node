@@ -5,7 +5,7 @@ const con = mysql.createConnection({
   host: DB.HOST,
   user: DB.USER,
   password: DB.PASS,
-  database: DB.DBNAME
+  database: DB.DB_NAME
 })
 
 export default con
