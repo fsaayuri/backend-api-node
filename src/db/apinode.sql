@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 10-Fev-2023 às 22:02
+-- Tempo de geração: 13-Mar-2023 às 18:53
 -- Versão do servidor: 10.4.22-MariaDB
 -- versão do PHP: 8.0.13
 
@@ -31,15 +31,28 @@ CREATE TABLE `cursos` (
   `id` int(11) NOT NULL,
   `nome` varchar(100) NOT NULL,
   `cargahoraria` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `cursos`
 --
 
 INSERT INTO `cursos` (`id`, `nome`, `cargahoraria`) VALUES
-(1, 'LP2', '76 horas'),
-(2, 'PJ3', '76 horas');
+(2, 'PJ3', '76 horas'),
+(4, 'LP2', '76 horas'),
+(6, 'LPI', '54 horas');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `usuario`
+--
+
+CREATE TABLE `usuario` (
+  `id` int(11) NOT NULL,
+  `nome` varchar(100) NOT NULL,
+  `bio` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Índices para tabelas despejadas
@@ -52,6 +65,12 @@ ALTER TABLE `cursos`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Índices para tabela `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT de tabelas despejadas
 --
 
@@ -59,7 +78,13 @@ ALTER TABLE `cursos`
 -- AUTO_INCREMENT de tabela `cursos`
 --
 ALTER TABLE `cursos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de tabela `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
