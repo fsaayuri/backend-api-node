@@ -44,8 +44,7 @@ export const deleteCourse = (req, res) => {
 }
 
 export const deleteIdCourse = (req, res) => {
-  const { id, slug } = req.params
-  console.log(slug)
+  const { id } = req.params
   //TODO Verificar se os dados são válidos
   courseModel.deleteCourse(id, (error, result) => {
     if (error)
