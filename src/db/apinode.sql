@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 13-Mar-2023 às 19:20
+-- Tempo de geração: 17-Mar-2023 às 21:29
 -- Versão do servidor: 10.4.22-MariaDB
 -- versão do PHP: 8.0.13
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `cursos` (
   `id` int(11) NOT NULL,
   `nome` varchar(100) NOT NULL,
-  `cargahoraria` varchar(50) NOT NULL
+  `cargahoraria` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `cursos` (
 INSERT INTO `cursos` (`id`, `nome`, `cargahoraria`) VALUES
 (2, 'PJ3', '76 horas'),
 (4, 'LP2', '76 horas'),
-(6, 'LPI', '54 horas');
+(6, '', '78 horas');
 
 -- --------------------------------------------------------
 
@@ -51,16 +51,10 @@ INSERT INTO `cursos` (`id`, `nome`, `cargahoraria`) VALUES
 CREATE TABLE `usuario` (
   `id` int(11) NOT NULL,
   `nome` varchar(100) NOT NULL,
-  `bio` varchar(100) NOT NULL
+  `email` varchar(100) NOT NULL,
+  `senha` varchar(500) NOT NULL,
+  `avatar` varchar(5000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Extraindo dados da tabela `usuario`
---
-
-INSERT INTO `usuario` (`id`, `nome`, `bio`) VALUES
-(1, '', 'Aluna Formada pelo campus IFSP de Caraguatatuba em 2023/1 no curso de Técnico em Informática p Inter'),
-(2, 'Irys Rosa', 'Aluna Formada pelo campus IFSP de Caraguatatuba em 2025/2');
 
 --
 -- Índices para tabelas despejadas
@@ -92,7 +86,7 @@ ALTER TABLE `cursos`
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
