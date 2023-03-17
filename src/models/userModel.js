@@ -1,7 +1,7 @@
 import con from '../db/dbConnection.js'
 
 export const listAllUsers = (callback) => {
-  const sql = "SELECT * FROM usuario;"
+  const sql = "SELECT * FROM usuarios;"
   con.query(sql, (err, result) => {
     if (err) {
       callback(err, null)
@@ -13,7 +13,7 @@ export const listAllUsers = (callback) => {
 }
 
 export const showUser = (id, callback) => {
-  const sql = "SELECT * FROM usuario WHERE id = ?;"
+  const sql = "SELECT * FROM usuarios WHERE id = ?;"
   const value = [id]
   con.query(sql, value, (err, result) => {
     if (err) {
@@ -26,11 +26,10 @@ export const showUser = (id, callback) => {
 }
 
 export const createUser = (user, callback) => {
-  const { nome, bio } = user
-  // const sql = 'INSERT INTO cursos SET ?;'
-  // const values = { nome, bio }
-  const sql = 'INSERT INTO usuario (nome, bio) VALUES (?, ?);'
-  const values = [nome, bio]
+  const { nome, email, senha, avatar } = user
+
+  const sql = 'INSERT INTO usuarios (nome, email, senha, avatar) VALUES (?, ?, ?, ?);'
+  const values = [nome, email, senha, avatar]
 
   con.query(sql, values, (err, result) => {
     if (err) {
@@ -43,7 +42,7 @@ export const createUser = (user, callback) => {
 }
 
 export const deleteUser = (id, callback) => {
-  const sql = 'DELETE FROM usuario WHERE id = ?;'
+  const sql = 'DELETE FROM usuarios WHERE id = ?;'
   const value = [id]
   con.query(sql, value, (err, result) => {
     if (err) {
@@ -55,10 +54,10 @@ export const deleteUser = (id, callback) => {
   })
 }
 
-export const updateUser = (course, callback) => {
-  const { id, nome, bio } = course
-  const sql = 'UPDATE usuario SET nome = ?, bio = ? WHERE id = ? ;'
-  const values = [nome, bio, id]
+export const updateUser = (user, callback) => {
+  const { id, nome, email, senha, avatar } = user
+  const sql = 'UPDATE usuarios SET nome = ?, email = ?, senha = ?, avatar = ?  WHERE id = ? ;'
+  const values = [nome, email, senha, avatar, id]
 
   con.query(sql, values, (err, result) => {
     if (err) {

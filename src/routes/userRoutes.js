@@ -1,18 +1,3 @@
-/*
-import express from 'express'
-
-const router = express.Router()
-
-router.get('/', (req, res) => {
-  res.json({ message: "Entrou na rota /user com GET!" })
-})
-
-router.post('/', (req, res) => {
-  res.json({ message: "Entrou na rota /user com POST!" })
-})
-
-export default router
-*/
 import express from 'express'
 import {
   listAllUsers,
@@ -28,8 +13,8 @@ const router = express.Router()
 router.get('/', listAllUsers) // SELECT
 router.get('/:id', showUser) // SELECT
 router.post('/', createUser) // INSERT
-router.delete('/', deleteUser) // DELETE
-router.delete('/:id', deleteIdUser) // DELETE
+router.delete('/', deleteUser) // DELETE ID FROM BODY JSON
+router.delete('/:id', deleteIdUser) // DELETE ID FROM PARAMS
 router.put('/', updateUser) // UPDATE
 
 export default router
