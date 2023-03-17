@@ -13,8 +13,8 @@ const router = express.Router()
 router.get('/', listAllCourses) // SELECT
 router.get('/:id', showCourse) // SELECT
 router.post('/', createCourse) // INSERT
-router.delete('/', deleteCourse) // DELETE
-router.delete('/:id', deleteIdCourse) // DELETE
+router.delete('/', deleteCourse) // DELETE (passa o JSON dentro de body)
+router.delete('/:id', deleteIdCourse) // DELETE (passa pelo código)
 router.put('/', updateCourse) // UPDATE
 
 export default router
