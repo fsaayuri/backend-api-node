@@ -67,7 +67,7 @@ export const deleteIdUser = (req, res) => {
       res.status(500).json({ message: "Erro no Banco de Dados" })
     if (result) {
       if (result.affectedRows) {
-        res.json({ message: "Usuário Deletado com Sucesso!" })
+        res.json({ message: `Usuário ${id} Deletado com Sucesso!` })
       } else {
         res.status(404).json({ message: `Usuário ${id} não encontrado` })
       }
