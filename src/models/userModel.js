@@ -5,11 +5,12 @@ import { z } from 'zod'
 // regra de negócio 
 const userSchema = z.object({
   id:
-    z.number()
+    z.number({ message: "ID deve ser um valor numérico." })
       .optional(),
-  nome: z.string({ message: "Nome deve conter letras." })
-    .min(3, { message: "Nome deve ser no mínimo 3 caracteres." })
-    .max(100, { message: "Nome deve ter no máximo 100 caracteres." }),
+  nome:
+    z.string({ message: "Nome deve conter letras." })
+      .min(3, { message: "Nome deve ser no mínimo 3 caracteres." })
+      .max(100, { message: "Nome deve ter no máximo 100 caracteres." }),
   email:
     z.string({ message: "Email deve conter letras." })
       .email({ message: "Email Inválido." })
@@ -20,14 +21,15 @@ const userSchema = z.object({
       .min(6, { message: "Senha deve ter no mínimo 6 caracteres." })
       .max(256, { message: "Senha deve ter no máximo 256 caracteres." }),
   avatar:
-    z.string({ message: "Avatar deve conter letras." })
+    z.string({
+      required_error: "Avatar é obrigatória.",
+      invalid_type_error: "Avatar deve conter letras.",
+    })
       .url({ message: "Avatar deve ser uma URL válida." })
-
-
 })
 
 export const validateUser = (user) => {
-  return userSchema.parse(user)
+  return userSchema.safeParse(user)
 }
 
 export const listAllUsers = (callback) => {
