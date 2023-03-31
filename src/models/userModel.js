@@ -1,16 +1,29 @@
 import con from '../db/dbConnection.js'
 import { z } from 'zod'
+// valida os dados no backend antes de passar para o front, caso o dado venha inválido já dispara uma mensagem de aviso.(evita erros no banco de dado IMPORTANTE)
 
+// regra de negócio 
 const userSchema = z.object({
-  id: z.number().optional(),
-  nome: z.string().min(3).max(50),
+  id:
+    z.number()
+      .optional(),
+  nome: z.string({ message: "Nome deve conter letras." })
+    .min(3, { message: "Nome deve ser no mínimo 3 caracteres." })
+    .max(100, { message: "Nome deve ter no máximo 100 caracteres." }),
   email:
-    z.string({ message: "Email Inválido" })
-      .email({ message: "Email Inválido" })
-      .min(5, { message: "O email deve ter ao menos 5 Caracteres" })
-      .max(50),
-  senha: z.string().min(3).max(50),
-  avatar: z.string()
+    z.string({ message: "Email deve conter letras." })
+      .email({ message: "Email Inválido." })
+      .min(5, { message: "O email deve ter ao menos 5 caracteres." })
+      .max(200, { message: "O email deve ter no máximo 100 caracteres." }),
+  senha:
+    z.string({ message: "Senha deve conter letras." })
+      .min(6, { message: "Senha deve ter no mínimo 6 caracteres." })
+      .max(256, { message: "Senha deve ter no máximo 256 caracteres." }),
+  avatar:
+    z.string({ message: "Avatar deve conter letras." })
+      .url({ message: "Avatar deve ser uma URL válida." })
+
+
 })
 
 export const validateUser = (user) => {
